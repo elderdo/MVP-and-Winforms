@@ -3,6 +3,11 @@ using ClassLibrary1;
 namespace TestProject1
 {
     [TestClass]
+
+    /// <summary>
+    /// Unit tests for the UserInfoPresenter class.
+    /// This class uses DummyUser to mockup form data and tests the presenter class for the MVP framework of the WinForms app.
+    /// </summary>
     public class UnitTest1
     {
         [TestMethod]

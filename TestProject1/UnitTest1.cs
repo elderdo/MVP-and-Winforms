@@ -20,9 +20,9 @@ namespace TestProject1
             user.Save(); // save is our only trigger for validation right now
             Assert.AreEqual(expected: "Bob", actual: user.FirstName, message: "The FirstName must be set to a value to remove error");
             Assert.IsFalse(condition: user.ShowFormErrors, message: "A filled in FirstName should not trigger an error");
-            Assert.AreEqual(expected:null,actual:user.ErrorMessage,"Filled in first name should remove error message");
+            Assert.AreEqual(expected: null, actual: user.ErrorMessage, "Filled in first name should remove error message");
 
-            
+
         }
 
         [TestMethod]
@@ -68,17 +68,59 @@ namespace TestProject1
 
     }
 
+    /// <summary>
+    /// This class is a mock implementation of the IUserInfo interface.
+    /// It is used to simulate the behavior of a user form in the WinFormApp1 project.
+    /// </summary>
     class DummyUser : IUserInfo
     {
+        /// <summary>
+        /// Gets or sets the first name of the user.
+        /// This property maps to the FirstName input field on Form1.
+        /// </summary>
         public string FirstName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the last name of the user.
+        /// This property maps to the LastName input field on Form1.
+        /// </summary>
         public string LastName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the email of the user.
+        /// This property maps to the Email input field on Form1.
+        /// </summary>
         public string Email { get; set; }
+
+        /// <summary>
+        /// Gets or sets the phone number of the user.
+        /// This property maps to the Phone input field on Form1.
+        /// </summary>
         public string Phone { get; set; }
+
+        /// <summary>
+        /// Gets or sets the error message to be displayed.
+        /// This property is used to show validation errors on Form1.
+        /// </summary>
         public string ErrorMessage { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether form errors should be shown.
+        /// This property is used to control the visibility of validation errors on Form1.
+        /// </summary>
         public bool ShowFormErrors { get; set; }
+
+        /// <summary>
+        /// Event that is triggered when the Save method is called.
+        /// This event is used to simulate the save button click on Form1.
+        /// </summary>
         public event EventHandler? SaveAttempted;
 
-        // Imitate button click s
+        /// <summary>
+        /// Simulates the save action on Form1.
+        /// This method is non-functional but implemented to comply with the IUserInfo interface.
+        /// It triggers the SaveAttempted event to allow unit tests to handle the save action.
+        /// </summary>
         public void Save() => SaveAttempted?.Invoke(this, EventArgs.Empty);
     }
 }
